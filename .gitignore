@@ -1,4 +1,5 @@
 # Byte-compiled / optimized / DLL files
+bfg --strip-blobs-bigger-than 50M
 __pycache__/
 *.py[cod]
 *$py.class
