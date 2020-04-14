@@ -1,7 +1,7 @@
 
 Project has 3 major phases for 2 major experiments (i. export value and ii. rca values):
 1. Exploratory data analysis: to check overall trends, patterns, outliers and suspicious data
- 	- ![Global trends in exports](https://github.com/wgova/time_series_trade/blob/master/images/engine_parts/rca_tests/Exports%20for%20engine_parts.png)
+ 	- ![Global trends in exports](https://github.com/wgova/time_series_trade/blob/master/images/engine_parts/Global%20trends%20in%20export%20values%20for%20engine%20parts.png)
 	
 	- ![Histograms: to illustrate frequency distributions] ()
  
