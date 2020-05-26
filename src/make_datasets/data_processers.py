@@ -1,3 +1,58 @@
+import glob
+import pandas as pd
+
+def clean_header(df):
+	"""
+	This functions removes weird characters and spaces from column names, while keeping everything lower case
+	"""
+    df.columns = df.columns.str.strip().str.lower().str.replace(' ', '_').str.replace('(', '').str.replace(')', '')
+
+
+def get_date_int(df, date_column):
+	year = df[date_column].dt.year
+	month = df[date_column].dt.month
+	week = df[date_column].dt.week
+	return year, month, week
+
+def days_diff(df):
+    df['days_since'] = (df['date_col2'] - df['date_col1']).dt.days
+
+
+def calc_cohorts(df, date_col2, date_col1):
+	"""
+	date_col2: name of the column with the signup date
+	date_col1: name of the column with the last login
+	"""
+	event_year, event_month, event_week = get_date_int(df, event_date)
+	lastevent_year, lastevent_month, lastevent_week = get_date_int(df, lastevent_activity)
+	years_diff = lastevent_year - sign_year
+	months_diff = lastlogin_month - sign_month
+	weeks_diff = lastlogin_week - sign_week
+	df['cohort_W'] = years_diff * 52 + weeks_diff + 1
+	df['cohort_M'] = years_diff * 12 + months_diff + 1
+
+def mass_edit(file_prefix, folder_path=''):
+    """
+    file_prefix: string that defines new file name
+    folder_path: no need to declare it. string copied from file explorer to the folder where the files are
+	"""
+    if folder_path == '':
+        folder_path = input('Please enter the path where the CSV files are:\n')
+    folder_path = folder_path.replace("\\","/")
+    if folder_path[:-1] != "/":
+        folder_path = folder_path + "/"
+		
+	file_list = glob.glob(folder_path + '*.csv')
+
+	for file in file_list:
+		name_pos = file.rfind('\\')
+		data = pd.read_csv(file)
+		# changes go here!!
+		data['seniority'] = data['seniority'] + 1 #in this case, i just needed to add 1 to this column in each file
+		# until here!!
+		data.to_csv(folder_path + file[name_pos+1:], index=False) #saving the file again with same name
+		print(file+' ready!!')
+
 # https://towardsdatascience.com/creating-python-functions-for-exploratory-data-analysis-and-data-cleaning-2c462961bd71
 # -------------------------Missing values----------------------------
 def check_nulls(df):
@@ -136,6 +191,8 @@ def transform_categorical_to_numercial(df, categorical_numerical_mapping):
         new_df[col] = new_df[col].map(transformer).astype('int64')
     return new_df
 
-#https://www.datacamp.com/community/tutorials/moving-averages-in-pandas
-#https://stackabuse.com/scikit-learn-save-and-restore-models/
+
+# https://towardsdatascience.com/automate-boring-tasks-with-your-own-functions-a32785437179
+# https://www.datacamp.com/community/tutorials/moving-averages-in-pandas
+# https://stackabuse.com/scikit-learn-save-and-restore-models/
 # https://stackabuse.com/tensorflow-neural-network-tutorial/\
