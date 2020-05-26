@@ -1,7 +1,7 @@
 
 Project has 3 major phases for 2 major experiments (i. export value and ii. rca values):
 1. Exploratory data analysis: to check overall trends, patterns, outliers and suspicious data
- 	- ![Global trends in exports](https://github.com/wgova/time_series_trade/blob/master/images/engine_parts/rca_tests/Exports%20for%20engine_parts.png)
+ 	- ![Global trends in exports](https://github.com/wgova/time_series_trade/blob/master/images/engine_parts/Global%20trends%20in%20export%20values%20for%20engine%20parts.png)
 	
 	- ![Histograms: to illustrate frequency distributions] ()
  
@@ -9,7 +9,7 @@ Project has 3 major phases for 2 major experiments (i. export value and ii. rca 
 	
 	- Autocorrelation and partial autocorrelation plots:
 	Check existence of trends, cyclical, stationarity and/or seasonality patterns ()
-![Example plots for characterisation - ACF & PACF](https://github.com/wgova/time_series_trade/blob/master/images/engine_parts/rca_tests/acf_pacf/South%20Africa_ACF_PACF.png)
+![Example plots for characterisation - ACF & PACF](https://github.com/wgova/time_series_trade/blob/master/images/engine_parts/acf_pacf/Germany_ACF_PACF.png)
 
 	- Moving average
 ![Example plots for characterisation - rolling stats](https://github.com/wgova/time_series_trade/blob/master/images/engine_parts/rca_tests/rolling_stats/South%20Africa_Rolling_Stats.png)
@@ -17,7 +17,11 @@ Project has 3 major phases for 2 major experiments (i. export value and ii. rca 
 
 
 3. Time series clustering and classification
- - In progress: Literature review
+In progress: Literature review:
+ 	- [ ] Feature extraction
+	- [ ] Feature selection
+	- [ ] Clustering model selection
+	- [ ] Clustering
 
 4. Time series forecasting
  - Planning: 
