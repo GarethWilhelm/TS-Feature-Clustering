@@ -1,0 +1,9 @@
+Plot random examples
+
+fig, axes = plt.subplots(nrows = 5, figsize = (12,20))
+random.seed(2)
+_ids = sample(list(sales["item_id"].unique()), 5)
+for i in range(len(_ids)):
+    series_from_item_binned(_ids[i], bin_every = 7).plot(ax = axes[i])
+    axes[i].set_title("Item: %s" % _ids[i])
+
