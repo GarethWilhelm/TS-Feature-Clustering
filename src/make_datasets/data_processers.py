@@ -97,6 +97,15 @@ def drop_columns_w_many_nans(df, missing_percent):
     print(list_of_cols)
     return df
 
+# Alternatively, set a threshold for nans
+def remove_null_values(df,threshold:int=0.8):
+  pct_null = df.isnull().sum() / len(df)
+  missing_features = pct_null[pct_null > threshold].index
+  df.drop(missing_features, axis=1, inplace=True)
+  df.fillna(0,inplace=True)
+
+
+
 from sklearn.impute import SimpleImputer
 imp_mean = SimpleImputer(missing_values=np.nan, strategy='mean')
 imp_mean.fit(df)from sklearn.ifrom sklearn.impute import SimpleImputermpute import SimpleImputer
@@ -173,6 +182,30 @@ def categorical_to_ordinal_transformer(categories):
     '''
     return lambda categorical_value: categories.index(categorical_value)
 
+# Plot multiple columns seaborn
+df = data[columns]
+n=len(df.columns)
+fig,ax = plt.subplots(1,n, figsize=(12,n*2), sharex=True)
+for i in range(n):
+    plt.sca(ax[i])
+    col = df.columns[i]
+    sns.countplot(x=None, y=df[col].values,data=df)
+    plt.title(f'Title based on {col}')
+
+fig, ax = plt.subplots(2,2, figsize=(12,10))
+# jitter = [[False, 1], [0.5, 0.2]]
+
+for j in range(len(ax)):
+    for i in range(len(ax[j])):
+        ax[j][i].tick_params(labelsize=15)
+        ax[j][i].set_xlabel('label', fontsize=17, position=(.5,20))
+        ax[j][i].set_ylabel('label', fontsize=17)
+        # x as Hindernisabstand hinzufügen 
+        ax[j][i] = sns.stripplot(x="Sex", y="SidestepDist", jitter=jitter[j][i], data=daten_csv, ax=ax[j][i])
+fig.suptitle('Categorical Features Overview', position=(.5,1.1), fontsize=20)
+fig.tight_layout()
+
+fig.show()
 #transform categorical features into numerical (ordinal) features:
 #Step 1 - output a function, i.e. a transformer, that will transform 
 # each str in a list into a int, where the int is the index of that element
@@ -196,3 +229,4 @@ def transform_categorical_to_numercial(df, categorical_numerical_mapping):
 # https://www.datacamp.com/community/tutorials/moving-averages-in-pandas
 # https://stackabuse.com/scikit-learn-save-and-restore-models/
 # https://stackabuse.com/tensorflow-neural-network-tutorial/\
+# https://queirozf.com/entries/pandas-dataframe-groupby-examples#group-by-and-change-aggregation-column-name
