@@ -18,7 +18,7 @@ def days_diff(df):
     df['days_since'] = (df['date_col2'] - df['date_col1']).dt.days
 
 
-def calc_cohorts(df, date_col2, date_col1):
+def calculate_time_difference(df, date_col2, date_col1):
 	"""
 	date_col2: name of the column with the signup date
 	date_col1: name of the column with the last login
@@ -28,8 +28,8 @@ def calc_cohorts(df, date_col2, date_col1):
 	years_diff = lastevent_year - sign_year
 	months_diff = lastlogin_month - sign_month
 	weeks_diff = lastlogin_week - sign_week
-	df['cohort_W'] = years_diff * 52 + weeks_diff + 1
-	df['cohort_M'] = years_diff * 12 + months_diff + 1
+	df['first_group'] = years_diff * 52 + weeks_diff + 1
+	df['second_group'] = years_diff * 12 + months_diff + 1
 
 def mass_edit(file_prefix, folder_path=''):
     """
