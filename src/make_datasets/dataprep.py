@@ -1,4 +1,3 @@
-# pip3 install oec
 import oec
 import pandas as pd
 import numpy as np
