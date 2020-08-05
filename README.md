@@ -18,8 +18,8 @@ Project has 3 major phases for 2 major experiments (i. export value and ii. rca 
 
 3. Time series clustering and classification
 In progress: Literature review:
- 	- [ ] Feature extraction
-	- [ ] Feature selection
+ 	- [x] Feature extraction
+	- [x] Feature selection
 	- [ ] Clustering model selection
 	- [ ] Clustering
 
